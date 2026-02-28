@@ -1,3 +1,4 @@
-Advance_Java_Assessments 📘💻
-
-This repository contains weekly Advanced Java assessments designed to strengthen practical knowledge and hands-on development skills. It covers key enterprise-level technologies such as JDBC for database connectivity, Hibernate for ORM-based persistence, Spring Framework for building scalable applications, and Mockito for effective unit testing and mocking. 🚀⚙️ Each weekly assignment focuses on real-world implementation, clean coding practices, and structured application design, helping build a strong foundation in backend and enterprise Java development. 📚✨
+Advance_Java_Assessments
+This repository contains weekly Advanced Java assessments designed to strengthen practical knowledge and hands-on development skills;
+It covers key enterprise-level technologies such as JDBC for database connectivity, Hibernate for ORM-based persistence, Spring Framework, Spring MVC, Spring Boot, REST API with Spring Boot for building scalable applications, and Mockito for effective unit testing and mocking; 
+Each weekly assignment focuses on real-world implementation, clean coding practices, and structured application design, helping build a strong foundation in backend and enterprise Java development;
