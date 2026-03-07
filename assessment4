@@ -1,0 +1,162 @@
+Insurance Policy Management
+Problem Statement
+An insurance company wants to build a backend REST API to manage customers and their insurance policies. The system should allow administrators to register customers, create policies, view policies, update policy details, and search policies based on different criteria.
+You are required to implement a Spring Boot REST API following clean architecture and best practices such as:
+•	Layered architecture (Controller, Service, Repository)
+•	DTO-based request and response handling
+•	Mapper classes for entity–DTO conversion
+•	Request validation
+•	Global exception handling
+•	JPA relationship mapping
+•	Query methods and custom queries
+•	Pagination and sorting
+Use Spring Boot 3, Spring Data JPA, and MySQL 
+Domain Model
+Design the following entities with appropriate JPA annotations.
+Customer
+Fields:
+•	id
+•	name
+•	email
+•	phoneNumber
+•	address
+Relationship:
+•	One customer can have multiple insurance policies.
+Policy
+Fields:
+•	id
+•	policyNumber
+•	policyType (Health, Life, Vehicle)
+•	premiumAmount
+•	coverageAmount
+•	startDate
+•	endDate
+•	status (ACTIVE, EXPIRED, CANCELLED)
+Relationship:
+•	Each policy belongs to one customer.
+Tasks
+Task 1: Entity & Relationship Mapping
+Create the following entity classes:
+•	Customer
+•	Policy
+Implement the relationship:
+•	OneToMany → Customer to Policies
+•	ManyToOne → Policy to Customer
+Task 2: DTO Design
+Create separate DTO classes to avoid exposing entity objects.
+Request DTOs
+•	CustomerRequestDTO
+•	PolicyRequestDTO
+Example fields in PolicyRequestDTO:
+•	policyNumber
+•	policyType
+•	premiumAmount
+•	coverageAmount
+•	startDate
+•	endDate
+•	customerId
+Response DTOs
+•	CustomerResponseDTO
+•	PolicyResponseDTO
+PolicyResponseDTO should include:
+•	policy details
+•	nested customer information
+Task 3: Mapper Classes
+Create mapper classes to convert between Entity and DTO.
+Examples:
+•	CustomerMapper
+•	PolicyMapper
+Responsibilities:
+•	Convert RequestDTO → Entity
+•	Convert Entity → ResponseDTO
+Task 4: Repository Layer
+Create Spring Data JPA repositories:
+•	CustomerRepository
+•	PolicyRepository
+Implement query methods such as:
+•	Find policies by policy type
+•	Find policies by customer ID
+•	Find policies within a premium range
+Example:
+List<Policy> findByPolicyType(String policyType);
+Task 5: Custom Query 
+Write at least one JPQL query using @Query.
+Example requirement:
+Retrieve all policies belonging to a customer email address.
+Task 6: Service Layer
+Implement service classes containing business logic.
+Example methods:
+•	createCustomer()
+•	createPolicy()
+•	getPolicyById()
+•	updatePolicy()
+•	cancelPolicy()
+•	getPoliciesByType()
+•	getPoliciesByPremiumRange()
+Task 7: REST Controllers
+Expose REST endpoints for the system.
+Customer APIs
+Method	Endpoint	Description
+POST	/api/customers	Register new customer
+GET	/api/customers	Retrieve all customers
+GET	/api/customers/{id}	Retrieve customer by ID
+Policy APIs
+Method	Endpoint	Description
+POST	/api/policies	Create a new policy
+GET	/api/policies	Retrieve all policies
+GET	/api/policies/{id}	Retrieve policy by ID
+PUT	/api/policies/{id}	Update policy
+DELETE	/api/policies/{id}	Cancel policy
+Task 8: Filtering APIs
+Implement the following filtering features.
+Filter by policy type
+GET /api/policies/type/{type}
+Filter by premium range
+GET /api/policies/premium?min=1000&max=5000
+Task 9: Pagination and Sorting
+Implement pagination and sorting for retrieving policies.
+Example API:
+GET /api/policies?page=0&size=5&sortBy=premiumAmount&direction=asc
+Use Spring Data Pageable.
+Task 10: Validation
+Apply Jakarta validation annotations to validate incoming requests.
+Customer
+•	name → cannot be blank
+•	email → must be valid
+Policy
+•	policyNumber → cannot be blank
+•	premiumAmount → must be positive
+•	coverageAmount → must be positive
+•	startDate → cannot be null
+Task 11: Global Exception Handling
+Implement a global exception handler using:
+@ControllerAdvice
+Handle the following exceptions:
+•	CustomerNotFoundException
+•	PolicyNotFoundException
+•	Validation errors
+Error Response Format
+Each error response must include:
+•	timestamp
+•	HTTP status
+•	error message
+•	request path
+Example:
+{
+ "timestamp": "2026-03-07T10:30:00",
+ "status": 404,
+ "error": "Policy not found",
+ "path": "/api/policies/10"
+}
+Expected Project Layers
+Your project should follow this structure:
+controller
+service
+repository
+entity
+dto
+mapper
+exception
+
+Deliverables
+Push your assessment solution to your GitHub repository including all the source code and output screenshot. 
