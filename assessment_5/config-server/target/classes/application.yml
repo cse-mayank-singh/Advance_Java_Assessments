@@ -1,0 +1,31 @@
+server:
+  port: 8888
+
+spring:
+  application:
+    name: config-server
+  cloud:
+    config:
+      server:
+        git:
+          uri: https://github.com/MayankSingh1904/movie-booking-config-repo
+          default-label: main
+          clone-on-start: true
+        # ---- LOCAL FALLBACK (use this during development instead of Git) ----
+        # native:
+        #   search-locations: classpath:/config-repo
+        # profiles:
+        #   active: native
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka/
+  instance:
+    prefer-ip-address: true
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,refresh
